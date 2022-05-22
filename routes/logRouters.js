@@ -28,7 +28,7 @@ router.get("/", (req, res) => {
       }
     });
   }
-  res.render("login", { title: "login" });
+  res.render("./login", { title: "login" });
 });
 
 router.post("/", async (req, res) => {
