@@ -172,6 +172,22 @@ app.post("/users/add", verifier, async (req, res) => {
   }
 });
 
+app.get("/login", (req, res) => {
+  const token = req.cookies.jwt;
+  if (token) {
+    jwt.verify(token, "everyDay", (err, decodedmsg) => {
+      if (err) {
+        res.redirect("/login");
+      }
+      if (decodedmsg.id.status === "admin") {
+        res.redirect("/admin");
+      }else{
+        res.redirect("/users/book");
+      }
+    });
+  }
+  res.render("login", { title: "login" });
+});
 // for user dashboard
 app.use("/users", userRoutes);
 app.use("/admin", adminRoutes);
