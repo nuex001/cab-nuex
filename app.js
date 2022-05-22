@@ -10,6 +10,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const verify = require("jsonwebtoken/verify");
+const helmet = require("helmet");
+const compression = require('compression')
 // routers
 const userRoutes = require("./routes/userRoutes.js");
 const adminRoutes = require("./routes/adminRoutes.js");
@@ -42,6 +44,8 @@ app.use(express.urlencoded({ extended: true })); //used for accepting form data
 app.use(express.static("assests"));
 app.use(upload());
 app.use(cookieParser());
+app.use(helmet());
+app.use(compression());
 
 // handle errors
 const handleErrors = (err) => {
