@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cabService-Order-cab</title>
+    <link rel="stylesheet" href="./css/book.css" />
+    <link rel="stylesheet" href="./fa/css/font-awesome.css" />
+  </head>
+  <body>
+    <div class="container">
+      <%-include("./includes/nav.ejs")%>
+      <div class="child">
+        <!-- <div class="poster">
+          <h1>Nuex cab</h1>
+          <img src="assests/images/logo.png" alt="" />
+          <p>Not a user <a href="#">Register?</a></p>
+        </div> -->
+        <form action="">
+          <h1 style="text-transform: uppercase">Order</h1>
+          <div class="box">
+            <div class="row">
+              <input type="text" placeholder="Name" name="name" />
+              <div class="check" style="display: none"></div>
+            </div>
+            <span style="color: red; text-align: center"></span>
+          </div>
+          <div class="box">
+            <div class="row">
+              <input type="email" placeholder="email" name="email" />
+              <div class="check" style="display: none"></div>
+            </div>
+            <span style="color: red; text-align: center"></span>
+          </div>
+          <div class="box">
+            <div class="row">
+              <input type="tel" placeholder="number " name="number" />
+              <div class="check" style="display: none"></div>
+            </div>
+            <span style="color: red; text-align: center"></span>
+          </div>
+          <div class="box">
+            <div class="row">
+              <select name="from" id="">
+                <option value="">From</option>
+                <% if(froms){ %> <% froms.forEach(from=>{%>
+                <option value="<%=from.from%>"><%=from.from%></option>
+                <%})%> <% } %>
+              </select>
+              <div class="check" style="display: none"></div>
+            </div>
+            <span style="color: red; text-align: center"></span>
+          </div>
+          <div class="box">
+            <div class="row">
+              <select name="to" id="">
+                <option value="">To</option>
+              </select>
+              <div class="check" style="display: none"></div>
+            </div>
+            <span style="color: red; text-align: center"></span>
+          </div>
+          <div class="box">
+            <div class="row">
+              <select name="driver" id="">
+                <option value="">Driver</option>
+              </select>
+              <div class="check" style="display: none"></div>
+            </div>
+            <span style="color: red; text-align: center"></span>
+          </div>
+          <div class="box">
+            <div class="row">
+              <input type="date" name="date" />
+              <div class="check" style="display: none"></div>
+            </div>
+            <span style="color: red; text-align: center"></span>
+          </div>
+          <div class="box">
+            <div class="row">
+              <input type="time" name="time" />
+              <div class="check" style="display: none"></div>
+            </div>
+            <span style="color: red; text-align: center"></span>
+          </div>
+          <input
+            type="text"
+            name="status"
+            value="pending"
+            style="display: none"
+          />
+          <input
+            type="text"
+            name="payment"
+            value="false"
+            style="display: none"
+          />
+          <div class="box">
+            <p class="price"><span>price</span>:300Naira</p>
+          </div>
+          <div class="box">
+            <input type="submit" value="Order" />
+          </div>
+        </form>
+      </div>
+      <%-include("./includes/footer.ejs")%>
+      <!-- overlay -->
+      <div class="overlay">       
+      </div>
+    </div>
+  </body>
+  <script src="./js/book.js"></script>
+  <script src="./js/verify.js"></script>
+</html>

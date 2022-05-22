@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User</title>
+    <link rel="stylesheet" href="../../css/admin/users.css" />
+    <link rel="stylesheet" href="../../fa/css/font-awesome.css" />
+  </head>
+  <body>
+    <div class="container">
+      <%-include("../includes/admin/nav.ejs")%>
+      <header>
+        <a href="/admin/">Cab</a>
+        <a href="/admin/users" class="active">Users</a>
+        <a href="/admin/book">Bookings</a>
+      </header>
+      <div class="child">
+        <div class="no"><%=data.length%></div>
+        <div class="box">
+          <% if (data.length > 0){ %> <% data.forEach(data=>{ %>
+          <div class="row">
+            <div class="text">
+              <div class="innerbox">
+                <p><span>Name:</span><%=data.name%></p>
+                <p><span>email:</span><%=data.email%></</p>
+              </div>
+              <div class="innerbox">
+                <p><span>Number:</span><%=data.number%></</p>
+                <p><span>Registered Cab:</span> <%=data.cabStatus%></</p>
+              </div>
+            </div>
+            <div class="btn" data-index="<%=data._id%>">
+              delete
+              <li class="fa fa-trash" data-index="<%=data._id%>"></li>
+            </div>
+          </div>
+          <% }) %> <% } %>
+
+          <!-- <div class="row">
+               <div class="text">
+                   <div class="innerbox">
+                       <p><span>Name:</span>emmanuel</p>
+                       <p><span>email:</span>emmanuel@gmail.com</p>
+                   </div>
+                   <div class="innerbox">
+                    <p><span>Number:</span>+2348076626484</p>
+                    <p><span>Registered Cab:</span> No</p>
+                   </div>
+               </div>
+               <div class="btn">
+                 delete <li class="fa fa-trash"></li>
+               </div>
+           </div> -->
+        </div>
+      </div>
+      <%-include("../includes/footer.ejs")%>
+    </div>
+  </body>
+  <script>
+    // get
+const getD = async function (url, data) {
+  const fetchOptions = {
+    method: "POST",
+    body: data,
+  };
+  const response = await fetch(`${url}`, fetchOptions);
+  return response.json();
+};
+const btns = document.querySelectorAll(".btn");
+btns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    const dataIndex = e.target.getAttribute("data-index");
+    // const dataId = e.target.getAttribute("data-id");
+    console.log(dataIndex);
+        const endpiont = `/admin/${dataIndex}`;
+        console.log(endpiont);
+        fetch(endpiont, {
+          method: "DELETE",
+        })
+        .then(response=>{
+        return response.json();
+        })
+        .then(result=>{
+          // console.log(e.target.parentElement);
+          e.target.parentElement.remove();
+        })
+        .catch(err=>{
+
+        })
+  });
+});
+ 
+ </script>
+</html>

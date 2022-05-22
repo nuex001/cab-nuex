@@ -1,0 +1,164 @@
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+const uniqueValidator = require("mongoose-unique-validator");
+
+const userSchema = new Schema({
+  //   serverIp: { type: String, index: { unique: true } },
+  name: {
+    type: String,
+    unique: true,
+    required: [true, "Please enter Username"],
+  },
+  password: {
+    type: String,
+    required: [true, "Please enter Password"],
+    minlength: [6, "minimum password length is 6 characters"],
+  },
+  email: {
+    type: String,
+    required: [true, "Please enter email"],
+    unique: true,
+  },
+  number: {
+    type: String,
+    required: [true, "Please enter number"],
+    unique: true,
+    // validate: [
+    //   (val) => {
+    //     User.find({ number: val})
+    //       .then((user) => false)
+    //       .catch((err) => true);
+    //   },
+    //   "number already exists",
+    // ],
+  },
+  status: {
+    type: String,
+    required: true,
+  },
+  cabStatus: {
+    type: String,
+    required: true,
+  },
+});
+userSchema.plugin(uniqueValidator, {
+  message: "{PATH} has already been taken",
+});
+const User = mongoose.model("user", userSchema);
+
+// for cab
+const cabSchema = new Schema({
+  id: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  dp: {
+    type: String,
+    required: [true, "Please upload dp"],
+  },
+  from: {
+    type: String,
+    required: [true, "Please enter Location from"],
+  },
+  to: {
+    type: String,
+    required: [true, "Please enter Location to"],
+  },
+  address: {
+    type: String,
+    required: [true, "Please enter Home address"],
+  },
+  accountName: {
+    type: String,
+    required: [true, "Please enter Account Name"],
+  },
+  accountBank: {
+    type: String,
+    required: [true, "Please enter Account Bank"],
+  },
+  accountNumber: {
+    type: String,
+    required: [true, "Please enter Account Number"],
+  },
+  vehicle: {
+    type: String,
+    required: [true, "Please select vehicle"],
+  },
+  status: {
+    type: String,
+    required: true,
+  },
+});
+
+const Cab = mongoose.model("cab", cabSchema);
+
+// for Order
+const orderSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  number: {
+    type: String,
+    required: true,
+  },
+  from: {
+    type: String,
+    required: true,
+  },
+  to: {
+    type: String,
+    required: true,
+  },
+  driver: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: String,
+    required: true,
+  },
+  time: {
+    type: String,
+    required: true,
+  },
+  status: {
+    type: String,
+    required: true,
+  },
+  payment: {
+    type: String,
+    required: true,
+  },
+});
+
+const Order = mongoose.model("order", orderSchema);
+
+// for Order
+const notSchema = new Schema({
+  userId: {
+    type: String,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  messages: {
+    type: String,
+    required: true,
+  },
+  user: {
+    type: String,
+    required: true,
+  },
+},{timestamps:true});
+
+const Not = mongoose.model("notification", notSchema);
+
+module.exports = { User, Cab, Order, Not };

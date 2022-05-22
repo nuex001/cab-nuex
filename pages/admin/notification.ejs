@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+    <link rel="stylesheet" href="../../css/admin/notification.css" />
+    <link rel="stylesheet" href="../../fa/css/font-awesome.css" />
+    <link rel="stylesheet" href="../fa/css/font-awesome.css" />
+  </head>
+  <body>
+    <div class="container">
+      <%-include("../includes/admin/nav.ejs")%>
+      <header>
+        <a href="#">Cab</a>
+        <a href="#">Users</a>
+        <a href="#">Bookings</a>
+      </header>
+      <div class="child">
+       <form action="">
+           <h1>Notification</h1>
+           <input type="text" required placeholder="Head title" name="title">
+           <textarea name="messages" required id="" placeholder="messages"></textarea>
+           <select name="user" id="" required>
+               <option value="">user</option>
+               <option value="all">EveryBody</option>
+               <option value="Cab">Cab</option>
+           </select>
+           <input type="submit" value="post">
+       </form>
+      </div>
+      <%-include("../includes/footer.ejs")%>
+    </div>
+  </body>
+  <script src="../dist/sweetalert2.all.min.js"></script>
+  <script>
+  const form = document.querySelector("form");
+    const comt = async function (url) {
+      const fetchOptions = {
+        method: "POST",
+        body: new FormData(form),
+      };
+      const response = await fetch(`${url}`, fetchOptions);
+      return response.json();
+    };
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      comt("post/").then((res) => {
+        if (res.msg) {
+          swal
+          .fire({
+            title: "Notification posted Successful",
+            icon: "success",
+          })
+          .then((res) => {
+            window.location.href="not"
+          });
+        }
+      });
+    });
+    </script>
+</html>

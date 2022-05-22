@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+    <link rel="stylesheet" href="../../css/admin/dashboard.css" />
+    <link rel="stylesheet" href="../../fa/css/font-awesome.css" />
+  </head>
+  <body>
+    <div class="container">
+      <%-include("../includes/admin/nav.ejs")%>
+      <header>
+        <a href="/admin/" class="active">Cab</a>
+        <a href="/admin/users">Users</a>
+        <a href="/admin/book">Bookings</a>
+      </header>
+      <div class="child">
+        <div class="no"><%=data.length%></div>
+        <div class="box">
+          <% if (data.length > 0){ %> <% data.forEach(data=>{ %>
+          <div class="row">
+            <div class="text">
+              <img src="../../<%=data.dp%>" alt="" />
+              <div class="innerbox">
+                <p><span>From:</span><%=data.from%></p>
+                <p><span>Address:</span><%=data.address%></p>
+              </div>
+              <div class="innerbox">
+                <p><span>To:</span><%=data.to%></p>
+                <p><span>vehicle:</span><%=data.vehicle%></p>
+              </div>
+            </div>
+            <div class="btn" data-index="<%=data._id%>">Approve</div>
+          </div>
+          <% }) %> <% } %>
+        </div>
+      </div>
+      <%-include("../includes/footer.ejs")%>
+    </div>
+  </body>
+  <script>
+    // get
+    const getD = async function (url, data) {
+      const fetchOptions = {
+        method: "POST",
+        body: data,
+      };
+      const response = await fetch(`${url}`, fetchOptions);
+      return response.json();
+    };
+    const btns = document.querySelectorAll(".btn");
+    btns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const dataIndex = e.target.getAttribute("data-index");
+        // const dataId = e.target.getAttribute("data-id");
+        console.log(dataIndex);
+        const formData = new FormData();
+        formData.append("id", dataIndex);
+        getD("admin/cab/", formData)
+          .then((res) => {
+            console.log(res.msg);
+            if (res.msg) {
+              const mainDiv = e.target.parentNode;
+              mainDiv.remove();
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+    });
+  </script>
+</html>

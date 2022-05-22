@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=title%></title>
+    <link rel="stylesheet" href="../css/add.css" />
+    <link rel="stylesheet" href="../fa/css/font-awesome.css" />
+    <link rel="stylesheet" href="./dist/sweetalert2.css" />
+  </head>
+  <body>
+    <div class="container">
+      <%-include("./includes/users/nav.ejs")%>
+      <header>
+        <a href="/users/add" class="active">Add</a>
+        <a href="/users/book">Bookings</a>
+      </header>
+      <div class="child">
+        <% if(!addedCab){ %>
+        <div class="poster">
+          <h1>Nuex cab</h1>
+          <img src="../images/logo.png" alt="" />
+          <p>Register your Cab</p>
+        </div>
+        <form action="" enctype="multipart/form-data">
+          <h1>Sign up</h1>
+          <div class="box dp">
+            <label for="dp"
+              ><img src="../images/download.jpg" alt="" / id="Dp"></label
+            >
+            <input
+              type="file"
+              name="file"
+              id="dp"
+              value=""
+              style="display: none"
+              onchange="previewImg(event)"
+            />
+          </div>
+          <div class="box">
+            <div class="row">
+              <input type="text" placeholder="From" name="from" />
+              <div class="check" style="display: none"></div>
+            </div>
+            <span style="color: red; text-align: center"></span>
+          </div>
+          <div class="box">
+            <div class="row">
+              <input type="text" placeholder="To" name="to" />
+              <div class="check" style="display: none"></div>
+            </div>
+            <span style="color: red; text-align: center"></span>
+          </div>
+          <div class="box">
+            <div class="row">
+              <input type="text" placeholder="Address" name="address" />
+              <div class="check" style="display: none"></div>
+            </div>
+            <span style="color: red; text-align: center"></span>
+          </div>
+          <div class="box">
+            <div class="row">
+              <input
+                type="text"
+                placeholder="Account Name"
+                name="accountName"
+              />
+              <div class="check" style="display: none"></div>
+            </div>
+            <span style="color: red; text-align: center"></span>
+          </div>
+          <div class="box">
+            <div class="row">
+              <input
+                type="text"
+                placeholder="Account Bank"
+                name="accountBank"
+              />
+              <div class="check" style="display: none"></div>
+            </div>
+            <span style="color: red; text-align: center"></span>
+          </div>
+          <div class="box">
+            <div class="row">
+              <input
+                type="text"
+                placeholder="Account Number"
+                name="accountNumber"
+              />
+              <div class="check" style="display: none"></div>
+            </div>
+            <span style="color: red; text-align: center"></span>
+          </div>
+          <div class="box">
+            <div class="row">
+              <select name="vehicle" id="">
+                <option value="">vehicle</option>
+                <option value="cab">cab</option>
+                <option value="jet">jet</option>
+                <option value="Bus">Bus</option>
+              </select>
+              <div class="check" style="display: none"></div>
+            </div>
+            <span style="color: red; text-align: center"></span>
+          </div>
+          <div class="box">
+            <input type="submit" value="Register" />
+          </div>
+        </form>
+        <% } %>
+        <% if(addedCab){ %>
+        <div class="addBox">
+          <img src=../<%=cabUser.dp%> alt="">
+          <li><span>From:</span><%=cabUser.from%></li>
+          <li><span>To:</span><%=cabUser.to%></li>
+          <li><span>Adddres:</span><%=cabUser.address%></li>
+          <li><span>AccountName:</span><%=cabUser.accountName%></li>
+          <li><span>AccountBank:</span><%=cabUser.accountBank%></li>
+          <li><span>AccountNumber:</span><%=cabUser.accountNumber%></li>
+          <li><span>Vehicle:</span><%=cabUser.vehicle%></li>
+        </div>
+        <% } %>
+      </div>
+      <%-include("./includes/footer.ejs")%>
+    </div>
+  </body>
+  <script src="../dist/sweetalert2.all.min.js"></script>
+  <script src="../js/add-cab.js"></script>
+  <script src="../js/verify.js"></script>
+</html>

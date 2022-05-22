@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cabService-signUp</title>
+    <link rel="stylesheet" href="./css/signUp.css" />
+    <link rel="stylesheet" href="./fa/css/font-awesome.css" />
+    <link rel="stylesheet" href="./dist/sweetalert2.css" />
+  </head>
+  <body>
+    <div class="container">
+      <%-include("./includes/nav.ejs")%>
+      <div class="child">
+        <div class="poster">
+          <h1>Nuex cab</h1>
+          <img src="./images/logo.png" alt="" />
+          <p>Already a user <a href="logIn">login?</a></p>
+        </div>
+        <form action="" id="register">
+          <h1>Sign up</h1>
+          <div class="box">
+            <div class="row">
+              <input type="text" placeholder="userName" name="name" />
+              <div class="check" style="display: none"></div>
+            </div>
+            <span style="color: red; text-align: center"></span>
+          </div>
+          <div class="box">
+            <div class="row">
+              <input type="password" placeholder="password" name="password" />
+              <div class="check" style="display: none"></div>
+            </div>
+            <span style="color: red; text-align: center"></span>
+          </div>
+          <div class="box">
+            <div class="row">
+              <input type="email" placeholder="email" name="email" />
+              <div class="check" style="display: none"></div>
+            </div>
+            <span style="color: red; text-align: center"></span>
+          </div>
+          <div class="box">
+            <div class="row">
+              <input type="tel" placeholder="number " name="number" />
+              <div class="check" style="display: none"></div>
+            </div>
+            <span style="color: red; text-align: center"></span>
+          </div>
+              <input type="text" style="display:none;" value="user" name="status" />
+              <input type="text" style="display:none;" value="No" name="cabStatus" />
+          <div class="box">
+            <input type="submit" value="Register" />
+          </div>
+        </form>
+      </div>
+      <%-include("./includes/footer.ejs")%>
+    </div>
+  </body>
+  <script src="./dist/sweetalert2.all.min.js"></script>
+  <script src="./js/register.js"></script>
+  <script src="./js/verify.js"></script>
+</html>

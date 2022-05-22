@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=title%></title>
+    <link rel="stylesheet" href="../css/notification.css" />
+    <link rel="stylesheet" href="../fa/css/font-awesome.css" />
+  </head>
+  <body>
+    <div class="container">
+      <%-include("./includes/users/nav.ejs")%>
+      <div class="child">
+        <div class="no"><%=data.length%></div>
+        <h1>Notification</h1>
+        <% if (data.length > 0){ %> <% data.forEach(data=>{ %>
+        <div class="row">
+          <li class="fa fa-remove" data-index="<%=data._id%>" id="btn"></li>
+          <h2>
+            <span>posted by</span>:Admin <%= new
+            Date(data.createdAt).toISOString().substring(0,10)%>
+          </h2>
+          <h3><%=data.title%></h3>
+          <p><%=data.messages%></p>
+        </div>
+        <% }) %> <% } %>
+        <!-- <div class="row">
+           <li class="fa fa-remove"></li>
+           <h2><span>posted by</span>:Admin 8th may 2021</h2>
+           <h3>Lorem ipsum dolor sit amet.</h3>
+           <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum libero vero, fugit quae quisquam optio incidunt sit soluta ipsam animi cumque voluptates dolorum officia quo voluptas? Autem ipsa incidunt veritatis.</p>
+       </div>
+       <div class="row">
+           <li class="fa fa-remove"></li>
+           <h2><span>posted by</span>:Admin 8th may 2021</h2>
+           <h3>Lorem ipsum dolor sit amet.</h3>
+           <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum libero vero, fugit quae quisquam optio incidunt sit soluta ipsam animi cumque voluptates dolorum officia quo voluptas? Autem ipsa incidunt veritatis.</p>
+       </div> -->
+      </div>
+      <%-include("./includes/footer.ejs")%>
+    </div>
+  </body>
+  <script>
+    // get
+    const getD = async function (url, data) {
+      const fetchOptions = {
+        method: "POST",
+        body: data,
+      };
+      const response = await fetch(`${url}`, fetchOptions);
+      return response.json();
+    };
+    const btns = document.querySelectorAll("#btn");
+    const no = document.querySelector(".no");
+    btns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
+        const dataIndex = e.target.getAttribute("data-index");
+        console.log(dataIndex);
+        const endpiont = `/users/${dataIndex}`;
+        console.log(endpiont);
+        fetch(endpiont, {
+          method: "DELETE",
+        })
+          .then((response) => {
+            return response.json();
+          })
+          .then((result) => {
+            // console.log(e.target.parentElement);
+            e.target.parentElement.remove();
+            const mainNo = no.textContent - 1;
+            no.textContent = mainNo;
+            console.log(mainNo);
+          })
+          .catch((err) => {});
+      });
+    });
+  </script>
+</html>

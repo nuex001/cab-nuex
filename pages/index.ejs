@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=title%></title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./fa/css/font-awesome.css">
+</head>
+<body>
+    <div class="container">
+        <%-include("./includes/nav.ejs")%>
+        <header>
+        <div class="slider">
+            <div class="slides">
+                <div class="text">
+                    We provide the best services!!<br>
+                    You could ask of <br>
+                    Click the  button below to order now
+                </div>
+                <div class="animate-car">
+                    <img src="./images/transportation-gif1.gif" alt="">
+                </div>
+                <a href="/order"class="order">Order now <i class="fa fa-paper-plane"></i></a>
+            </div>
+            <!-- <div class="slides"></div> -->
+        </div>
+        </header>
+        <section id="about">
+            <div class="heading">
+                <span>A</span>
+                <span>B</span>
+                <span>o</span>
+                <span>u</span>
+                <span>t</span>
+                <span class="space"></span>
+                <span>u</span>
+                <span>s</span>
+            </div>
+          <div class="child">
+            <div class="box">
+                <img src="./images/car6.jpg" alt="">
+            </div>
+            <div class="box">
+                <h1>About Cab</h1>
+                <h2>subheader</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum voluptatibus ducimus nostrum, quos accusamus commodi!</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum voluptatibus ducimus nostrum, quos accusamus commodi!</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum voluptatibus ducimus nostrum, quos accusamus commodi!</p>
+            </div>
+          </div>
+        </section>
+        <!-- services -->
+        <section id="services">
+            <div class="heading">
+                <span>S</span>
+                <span>e</span>
+                <span>r</span>
+                <span>v</span>
+                <span>i</span>
+                <span>c</span>
+                <span>e</span>
+                <span>s</span>
+            </div>
+          <div class="child">
+            <div class="box">
+                <img src="./images/car12.jpg" alt="">
+            </div>
+            <div class="box">
+                <h1>Services</h1>
+                <h2>we offer many services.</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum voluptatibus ducimus nostrum, quos accusamus commodi!</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum voluptatibus ducimus nostrum, quos accusamus commodi!</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum voluptatibus ducimus nostrum, quos accusamus commodi!</p>
+            </div>
+          </div>
+        </section>
+       <%-include("./includes/footer.ejs")%>
+    </div>
+</body>
+<script src="./js/index.js"></script>
+</html>
