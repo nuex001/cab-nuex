@@ -25,8 +25,8 @@ const { User, Cab } = require("./modules/schema");
 const app = express();
 // connect to mongodb
 
-const dbURL = "mongodb://127.0.0.1:27017/cab-nuex";
-// mongodb://127.0.0.1:27017/tblog-nuex
+const dbURL = "mongodb+srv://cabNuex:0EdwD4qQ8ivizsfC@cluster0.vke1o.mongodb.net/?retryWrites=true&w=majority";
+//mongodb://127.0.0.1:27017/cab-nuex
 mongoose
   .connect(dbURL)
   .then((result) => {
