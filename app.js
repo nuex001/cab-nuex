@@ -27,10 +27,11 @@ const app = express();
 
 const dbURL = "mongodb+srv://cabNuex:0EdwD4qQ8ivizsfC@cluster0.vke1o.mongodb.net/?retryWrites=true&w=majority";
 //mongodb://127.0.0.1:27017/cab-nuex
+const port = process.env.PORT || 3000
 mongoose
   .connect(dbURL)
   .then((result) => {
-    app.listen(3000);
+    app.listen(port);
   })
   .catch((err) => {
     console.log(err);
