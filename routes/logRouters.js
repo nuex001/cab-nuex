@@ -14,7 +14,22 @@ const createToken = (id) => {
   return jwt.sign({ id }, "everyDay");
 };
 
-
+router.get("/", (req, res) => {
+  const token = req.cookies.jwt;
+  if (token) {
+    jwt.verify(token, "everyDay", (err, decodedmsg) => {
+      if (err) {
+        res.redirect("/login");
+      }
+      if (decodedmsg.id.status === "admin") {
+        res.redirect("/admin");
+      }else{
+        res.redirect("/users/book");
+      }
+    });
+  }
+  res.render("logIn", { title: "login" });
+});
 
 router.post("/", async (req, res) => {
   const { name, password } = req.body;
