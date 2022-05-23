@@ -13,7 +13,7 @@ const verifier = async (req, res, next) => {
   if (token) {
     await jwt.verify(token, "everyDay", (err, decodedmsg) => {
       if (err) {
-        res.redirect("/login");
+        res.redirect("/logIn");
       }
       if (decodedmsg.id.status === "user") {
         res.redirect("/users/book");
@@ -21,7 +21,7 @@ const verifier = async (req, res, next) => {
       }
     });
   } else {
-    res.redirect("/login");
+    res.redirect("/logIn");
   }
   next();
 };

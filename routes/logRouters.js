@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
   if (token) {
     jwt.verify(token, "everyDay", (err, decodedmsg) => {
       if (err) {
-        res.redirect("/login");
+        res.redirect("/logIn");
       }
       if (decodedmsg.id.status === "admin") {
         res.redirect("/admin");

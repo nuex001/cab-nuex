@@ -15,7 +15,7 @@ const verifier = async (req, res, next) => {
     await jwt.verify(token, "everyDay", (err, decodedmsg) => {
       if (err) {
         // console.log(err.message);
-        res.redirect("/login");
+        res.redirect("/logIn");
       }
       if (decodedmsg.id.status === "admin") {
         res.redirect("/admin");
@@ -25,7 +25,7 @@ const verifier = async (req, res, next) => {
       }
     });
   } else {
-    res.redirect("/login");
+    res.redirect("/logIn");
   }
   next();
 };

@@ -25,8 +25,9 @@ const { User, Cab } = require("./modules/schema");
 const app = express();
 // connect to mongodb
 
-const dbURL = "mongodb+srv://cabNuex:0EdwD4qQ8ivizsfC@cluster0.vke1o.mongodb.net/?retryWrites=true&w=majority";
+const dbURL = "mongodb://127.0.0.1:27017/cab-nuex";
 //mongodb://127.0.0.1:27017/cab-nuex
+//mongodb+srv://cabNuex:0EdwD4qQ8ivizsfC@cluster0.vke1o.mongodb.net/?retryWrites=true&w=majority
 const port = process.env.PORT || 3000
 mongoose
   .connect(dbURL)
@@ -75,14 +76,14 @@ const verifier = (req, res, next) => {
   if (token) {
     jwt.verify(token, "everyDay", (err, decodedmsg) => {
       if (err) {
-        res.redirect("/login");
+        res.redirect("/logIn");
       }
       if (decodedmsg.id.status === "admin") {
         res.redirect("/admin");
       }
     });
   } else {
-    res.redirect("/login");
+    res.redirect("/logIn");
   }
   next();
 };
@@ -172,6 +173,11 @@ app.post("/users/add", verifier, async (req, res) => {
   }
 });
 
+//logout
+app.get("/logout/",(req,res)=>{
+  res.clearCookie("jwt")
+  res.redirect("/");
+}) 
 // for user dashboard
 app.use("/users", userRoutes);
 app.use("/admin", adminRoutes);
